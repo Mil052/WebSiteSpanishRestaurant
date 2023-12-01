@@ -1,0 +1,143 @@
+.navigationBar {
+    margin: 2rem 1rem 4rem 1rem;
+    display: flex;
+    gap: 2rem 3rem;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--font-navigation);
+    font-size: 24px;    
+}
+
+.navigationBar header {
+    font-weight: 700;
+    margin-right: auto;
+}
+
+.navigationBar header span {
+    display: inline-block;
+}
+
+.navigationContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 50;
+}
+
+.containerOpenforMobile {
+    width: 100%;
+}
+
+.containerCloseforMobile {
+    width: 0;
+}
+
+.navigation {
+    position: absolute;
+    background-color: white;
+    min-width: 18rem;
+    width: 20rem;
+    height: 100%;
+    padding: 7rem 4rem;
+    box-shadow: 2px 0 12px 12px rgba(0, 0, 0, 0.3);
+    z-index: 60;
+    transition: left 2s ease-in-out;
+}
+
+.navigationOpen {
+    left: 0;
+}
+
+.navigationClose {
+    left: -21rem;
+}
+
+.linksList {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.linksList li:hover {
+    transform: scale(1.06);
+}
+
+.closeNavButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-30px);
+    right: 8px;
+    border: none;
+    width: 40px;
+    height: 60px;
+    background-color: transparent;
+    background-image: url( "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 48'%3E%3Cpath d='M1 24L31 1V47C31 47.8 11 32 1 24Z' fill='black' stroke='black' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+.hamburgerButton {
+    display: block;
+    border: none;
+    background-color: transparent;
+    width: 4rem;
+}
+
+.hamburgerLine {
+    display: block;
+    background-color: black;
+    width: 4rem;
+    height: 8px;
+}
+
+.hamburgerLine:first-child {
+    margin-bottom: 1rem;
+}
+
+.hamburgerLine:last-child {
+    margin-top: 1rem;
+}
+
+@media (min-width: 440px) {
+    .navigationBar header {
+        min-width: 278px;
+    }
+}
+
+@media (min-width: 576px) {
+    .navigationBar {
+        margin: 2rem 4rem 4rem 4rem;
+        gap: 2rem 4rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .navigationBar {
+        flex-wrap: wrap;
+    }
+
+    .navigationContainer {
+        position: static;
+        display: block;
+        width: auto;
+    }
+
+    .navigation {
+        position: static;
+        width: auto;
+        padding: 0;
+        box-shadow: none;
+    }
+
+    .linksList {
+        flex-direction: row;
+    }
+
+    .closeNavButton {
+        display: none;
+    }
+
+    .hamburgerButton {
+        display: none;
+    }
+}

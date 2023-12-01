@@ -1,0 +1,51 @@
+.carousel {
+    width: 100%;
+    height: 100%;
+    background-color: var(--background-primary-dark);
+    position: relative;
+}
+
+.carouselItemHidden {
+    display: none !important;
+}
+
+/* Animation classes */
+.rightToCenter {
+    animation: slide-right-center 1500ms ease-in-out;
+    animation-fill-mode: forwards;
+}
+.centerToLeft {
+    animation: slide-center-left 1500ms ease-in-out;
+    animation-fill-mode: forwards;
+}
+.leftToCenter {
+    animation: slide-left-center 1500ms ease-in-out;
+    animation-fill-mode: forwards;
+}
+.centerToRight {
+    animation: slide-center-right 1500ms ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+/*  <----- to left */
+    /* 100    0 <-- 100 */
+@keyframes slide-right-center {
+    from {margin-left: 100%}
+    to {margin-left: 0}
+}
+    /* 100 <-- 0    100 */
+@keyframes slide-center-left {
+    from {margin-left: 0}
+    to {margin-left: -100%}
+}
+/*   -----> to righ */
+    /* 100 --> 0    100 */
+@keyframes slide-left-center {
+    from {margin-left: -100%}
+    to {margin-left: 0}
+}
+    /* 100    0 --> 100 */
+@keyframes slide-center-right {
+    from {margin-left: 0}
+    to {margin-left: 100%}
+}

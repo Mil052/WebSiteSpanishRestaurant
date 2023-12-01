@@ -1,0 +1,126 @@
+.gallerySection {
+    background-color: var(--background-tertiary-lite);
+}
+
+.galleryHeader h5 {
+    font-family: var(--font-paragraph);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 2rem;
+    margin: 4rem 3rem;
+}
+
+.galleryHeader h4 {
+    font-family: var(--font-header);
+    color: var(--text-color-primary-dark);
+    font-size: 20px;
+    line-height: 25px;
+    margin: 4rem 1rem;
+}
+
+@media (min-width: 576px) {
+    .galleryHeader h5 {
+        font-size: 20px;
+        margin: 4rem 8rem;
+    }
+    
+    .galleryHeader h4 {
+        margin: 4rem;
+        font-size: 24px;
+        line-height: 29px;
+    }
+}
+
+.galleryContainer {
+    overflow: hidden;
+    display: grid;
+    grid-auto-rows: 8rem;
+    gap: 2rem;
+}
+
+.galleryItem {
+    width: 100%;
+    height: 100%;
+}
+
+.itemLarge {
+    grid-row-end: span 4;
+}
+
+.itemMedium {
+    grid-row-end: span 3;
+}
+
+.itemSmall {
+    grid-row-end: span 2;
+}
+
+.galleryItem:hover {
+    transform: scale(1.03);
+    cursor: pointer;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.roller {
+    position: relative;
+    height: 8rem;
+}
+
+.shutter {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    background: linear-gradient(to top, rgb(227, 227, 227) 20%, rgba(255, 255, 255, 0));
+}
+
+.galleryButton {
+    display: block;
+    height: 4rem;
+    border: none;
+    padding: 1rem 2rem;
+    margin: 2rem auto;
+    background-color: transparent;
+    font-family: var(--font-button);
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.buttonOpen {
+    border-top: 1px solid black;
+}
+
+.buttonClose {
+    border-bottom: 1px solid black;
+}
+
+.galleryButton:hover {
+    border-width: 2px;
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.galleryButton span {
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+.buttowArrow {
+    vertical-align: middle;
+}
+
+@media (min-width: 640px) {
+    .galleryContainer {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1280px) {
+    .galleryContainer {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

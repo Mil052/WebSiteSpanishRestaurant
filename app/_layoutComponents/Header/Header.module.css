@@ -1,0 +1,108 @@
+.header {
+    background-image: url(/header/bg_brick_wall.jpg);
+    background-size: cover;
+    text-align: center;
+    padding-top: 3rem;
+}
+
+.header h1 {
+    font-family: var(--font-header);
+    font-size: 3rem;
+    line-height: 4rem;
+    color: var(--text-color-primary-dark);
+    text-shadow: 6px 6px 6px rgba(0, 0, 0, 0.4);
+}
+
+.header h1 span {
+    display: inline-block;
+    margin: 0 1rem;
+}
+
+.header h1 span:last-child {
+    color: white;
+   
+}
+
+.shutter {
+    filter: drop-shadow(0px -40px 16px rgba(0, 0, 0, 0.5));
+}
+
+.shutterFill {
+    background-color: white;
+    height: 4rem;
+    clip-path: url(#shutterPath);
+}
+
+.underline {
+    margin-bottom: 1rem;
+    height: 3rem;
+    color: white;
+    text-shadow: 6px 6px 6px rgba(0, 0, 0, 0.5);
+}
+
+.underline hr {
+    display: inline-block;
+    vertical-align: middle;
+    max-width: 24rem;
+    width: 30%;
+    background-color: white;
+    height: 3px;
+    border: 1px solid white;
+    box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.5);
+}
+
+.underline span {
+    display: inline-block;
+    vertical-align: middle;
+    height: 3rem;
+    line-height: 3rem;
+    font-size: 2rem;
+    margin: 0 2rem;
+}
+
+@media (min-width: 440px) {
+    .shutterFill {
+        height: 5rem;
+    }
+
+    .header h1 {
+        font-size: 4rem;
+        line-height: 5rem;
+    }
+
+    .underline {
+        height: 4rem;
+    }
+
+    .underline span {
+        font-size: 3rem;
+        margin: 0 3rem;
+    }
+
+    .underline hr {
+        height: 4px;
+        border: 1px solid white;
+        box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.5);
+    }
+}
+
+@media (min-width: 640px) {
+    .shutterFill {
+        height: 6rem;
+    }
+
+    .header h1 {
+        font-size: 6rem;
+        line-height: 7rem;
+    }
+
+    .underline hr {
+        height: 5px;
+    }
+}
+
+@media (min-width: 992px) {
+    .shutterFill {
+        height: 8rem;
+    }
+}

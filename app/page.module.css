@@ -1,0 +1,350 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.restaurantSection {
+  margin: 4rem 1rem;
+}
+
+.sectionHeader h5 {
+  font-family: var(--font-paragraph);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 2rem;
+  margin-left: 2rem;
+}
+
+.restaurantInfo {
+  position: relative;
+  flex-direction: column;
+  margin-top: 2rem;
+  display: flex;
+  gap: 2rem;
+}
+
+.imageContainer {
+  filter: drop-shadow(0px 0px 24px rgba(0, 0, 0, 0.25));
+  min-width: 15rem;
+  flex: 1 0 320px;
+  align-self: center;
+  height: 100%;
+  margin-right: 1rem;
+}
+
+.imageBackgroundShape {
+  margin: 0 auto;
+  aspect-ratio: 1/1;
+  position: relative;
+  max-width: 25rem;
+  display: flex;
+  align-items: center;
+  background-color: var(--background-primary-lite);
+  padding: 3rem;
+  border-radius: 50%;
+  border: 1px solid #73a19f;
+}
+
+.imageBackgroundShape::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid #a47869;
+  top: 15px;
+  left: -4px;
+}
+
+.imageBackgroundShape::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid #687c98;
+  top: -10px;
+  left: 16px;
+}
+
+.roundedShapeOutline {
+  display: none;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  min-height: 12rem;
+  min-width: 12rem;
+  object-fit: contain;
+}
+
+.infoBlock {
+  color: var(--text-color-primary-dark);
+}
+
+.infoBlock h4 {
+  font-family: var(--font-header);
+  font-size: 20px;
+  line-height: 25px;
+  margin: 8px 0;
+}
+
+.infoBlock p {
+  font-family: var(--font-paragraph);
+  font-size: 16px;
+  line-height: 23px;
+  margin: 8px 0;
+}
+
+.infoBlock p b {
+  font-weight: 600;
+}
+
+.buttonPrimary, .buttonSecondary {
+  height: 40px;
+  font-family: var(--font-button);
+  font-size: 18px;
+  font-weight: 600;
+  min-width: 9rem;
+  border: 3px solid var(--button-color-primary);
+  border-radius: 12px;
+}
+
+.buttonPrimary:hover, .buttonSecondary:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.3);
+  font-weight: 700;
+}
+
+.buttonPrimary {
+  color: var(--button-color-primary);
+  background-color: white;
+}
+
+.buttonSecondary {
+  color: white;
+  background-color: var(--button-color-primary);
+}
+
+.buttonsRow {
+  margin: 12px 0;
+}
+
+.buttonsRow a:first-child {
+  margin-right: 1rem;
+}
+
+/* Media Queries */
+
+@media (min-width: 576px) {
+  .sectionHeader h5 {
+    font-size: 20px;
+  }
+
+  .restaurantSection {
+    margin: 4rem;
+  }
+
+  .sectionHeader h5 {
+    margin-left: 4rem;
+  }
+
+  .infoBlock h4 {
+    font-size: 24px;
+    line-height: 29px;
+  }
+  
+  .infoBlock p {
+    font-size: 18px;
+    line-height: 25px;
+  }
+
+  .buttonsRow a:first-child {
+    margin-right: 2rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .imageContainer {
+    position: absolute;
+    top: 50%;
+    right: -4rem;
+    transform: translate(0, -50%);
+    margin-right: 0;
+  }
+
+  .imageContainer::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 20;
+    top: 16px;
+    left: 16px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 481 674' fill='none'%3E%3Cpath d='M481 1H90.9016C33.7244 99.8423 1 214.6 1 337C1 459.4 33.7244 574.158 90.9016 673H481' stroke='%23687c98'/%3E%3C/svg%3E");
+  }
+
+  .imageContainer::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 20;
+    top: -24px;
+    left: 8px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 481 674' fill='none'%3E%3Cpath d='M481 1H90.9016C33.7244 99.8423 1 214.6 1 337C1 459.4 33.7244 574.158 90.9016 673H481' stroke='%23a47869'/%3E%3C/svg%3E");
+  }
+
+  .restaurantInfo {
+    gap: 0;
+  }
+
+  .infoBlock {
+    height: 21rem;
+  }
+
+  .infoBlock:first-child:before {
+    float: right;
+    content: '';
+    width: 432px;
+    height: 336px;
+    shape-outside: polygon(85px 0px, 432px 0px, 432px 336px, 0px 336px, 10px 220px, 34px 120px);
+  }
+
+  .infoBlock:last-child:before {
+    float: right;
+    content: '';
+    width: 432px;
+    height: 336px;
+    shape-outside: polygon(0px 0px, 432px 0px, 432px 336px, 85px 336px, 34px 216px, 10px 116px);
+  }
+
+  .imageBackgroundShape {
+    border-radius: unset;
+    max-width: 30rem;
+    border: none;
+    height: 100%;
+    clip-path: path('M89.9016 672C32.7244 573.158 0 458.4 0 336C0 213.6 32.7244 98.8423 89.9016 0H512V672H89.9016Z');
+  }
+
+  .imageBackgroundShape::before {
+    display: none;
+  }
+
+  .imageBackgroundShape::after {
+    display: none;
+  }
+
+  .roundedShapeOutline {
+    display: block;
+    position: absolute;
+    left: 0;
+    height: 100%;
+  }
+}
+
+@media (min-width: 1280px) {
+  .restaurantInfo {
+    flex-direction: row;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .imageContainer {
+    clip-path: none;
+    position: static;
+    transform: translate(0, 0);
+    flex: 1 0 320px;
+    background-color: transparent;
+    margin-right: 1rem;
+  }
+
+  .imageContainer::before {
+    display: none;
+  }
+
+  .imageContainer::after {
+    display: none;
+  }
+
+  .imageBackgroundShape {
+    clip-path: none;
+    border-radius: 50%;
+    border: 1px solid #73a19f;
+    padding: 3rem;
+    height: auto;
+  }
+
+  .imageBackgroundShape::before {
+    display: block;
+  }
+
+  .imageBackgroundShape::after {
+    display: block;
+  }
+
+  .roundedShapeOutline {
+    display: none;
+  }
+
+  .infoBlock {
+    height: auto;
+    flex: 1 0 320px;
+  }
+
+  .infoBlock:first-child:before {
+    display: none;
+  }
+  
+  .infoBlock:last-child:before {
+    display: none;
+  }
+}
+
+/* Contact box */
+.contactBox {
+  margin: 3rem 1rem;
+  padding: 3rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 2rem;
+  align-items: center;
+  background-color: var(--background-primary-dark);
+}
+
+.contactBoxInfo p {
+  font-family: var(--font-paragraph);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+  margin: 8px;
+  text-align: center;
+}
+
+@media (min-width: 576px) {
+  .contactBox {
+    margin: 3rem 2rem;
+    padding: 3rem 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .contactBox {
+    flex-direction: row;
+    margin: 3rem 4rem;
+    padding: 3rem 3rem;
+    display: flex;
+    gap: 3rem;
+  }
+
+  .contactBoxInfo p {
+    text-align: left;
+  }
+}
