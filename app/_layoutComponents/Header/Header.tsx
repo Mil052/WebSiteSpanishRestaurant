@@ -2,7 +2,7 @@ import styles from './Header.module.css';
 
 export default function Header () {
     return (
-        <header className={styles.header}>
+        <header className={styles.header} style={{ backgroundImage: `url(./header/bg_brick_wall.jpg)` }}>
             <h1><span>LA FABRICA</span> <span>DEL GUSTO</span></h1>
             <div className={styles.underline}>
                 <hr/> <span>&#10045;</span> <hr/>

@@ -1,5 +1,4 @@
 .header {
-    background-image: url(/header/bg_brick_wall.jpg);
     background-size: cover;
     text-align: center;
     padding-top: 3rem;
@@ -20,7 +19,6 @@
 
 .header h1 span:last-child {
     color: white;
-   
 }
 
 .shutter {
