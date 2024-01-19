@@ -1,0 +1,12 @@
+.main {
+    padding: 0 1rem;
+    min-height: 34rem;
+    height: calc(100vh - 8rem);
+    background-color: var(--background-tertiary-lite);
+}
+
+@media (min-width: 576px) {
+    .main {
+        padding: 0 2rem;
+    }
+}

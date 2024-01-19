@@ -9,6 +9,7 @@ font-family: 'Noto Sans', sans-serif;
   --font-header: 'Kameron', serif;
   --font-paragraph: 'Noto Sans', sans-serif;
   --font-navigation: 'Noto Sans', sans-serif;
+  --font-list-item: 'Noto Sans', sans-serif;
   --font-button: 'Noto Sans', sans-serif;
 
   --background-primary-dark: #D2B3A9;
@@ -38,7 +39,6 @@ font-family: 'Noto Sans', sans-serif;
 html,
 body {
   max-width: 100vw;
-  overflow-x: hidden;
 }
 
 body {
@@ -46,11 +46,12 @@ body {
 }
 
 a {
+  font-size: inherit;
   color: inherit;
   text-decoration: none;
 }
 
-ul, ol {
+ul, ol, menu {
   list-style-type: none;
 }
 

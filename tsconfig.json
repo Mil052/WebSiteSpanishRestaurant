@@ -34,7 +34,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "dist/types/**/*.ts",
-    "gitHubPagesImageLoader.js"  ],
+    "gitHubPagesImageLoader.js", "app/(user)/_layoutComponents/ReactQueryClientProvider.tsx"  ],
   "exclude": [
     "node_modules"
   ]

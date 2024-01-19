@@ -1,0 +1,50 @@
+.eventInfo {
+    height: 100%;
+    background-color: var(--background-primary-lite);
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+}
+
+.eventInfoDescription {
+    padding: 1rem;
+}
+.date {
+    font-family: var(--font-paragraph);
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0;
+    text-align: right;
+}
+
+.eventInfoDescription h1 {
+    font-family: var(--font-header);
+    color: var(--text-color-primary-dark);
+    font-size: 24px;
+    font-weight: 500;
+    margin: 8px 0;
+}
+
+.eventInfoDescription h2 {
+    font-family: var(--font-header);
+    color: var(--text-color-primary-dark);
+    font-size: 20px;
+    font-weight: 400;
+    margin: 6px 0;
+}
+
+.eventInfoDescription p {
+    font-family: var(--font-paragraph);
+    color: var(--text-color-primary-lite);
+    font-size: 16px;
+    font-weight: 400;
+    margin: 8px 0;
+    text-align: left;
+}
+
+.eventInfoImage {
+    width: 100%;
+    min-height: 10rem;
+    flex: 10rem 1 0;
+    object-fit: cover;
+}

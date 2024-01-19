@@ -1,0 +1,188 @@
+.eventsSection {
+    text-align: center;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 7rem 1fr;
+    gap: 2rem;
+}
+
+.eventListContainer {
+    grid-area: 2/ 1/ 3/ 2;
+    min-height: 25rem;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    padding: 60px 0;
+    justify-self: center;
+}
+
+.title {
+    align-self: end;
+}
+
+.title h2 {
+    text-align: left;
+    font-family: var(--font-header);
+    font-size: 4rem;
+    font-weight: 600;
+    color: var(--text-color-primary-dark);
+    text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.4);
+}
+
+.title hr {
+    background-color: var(--text-color-primary-dark);
+    height: 3px;
+    border: 1px solid var(--text-color-primary-dark);
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.4);
+}
+
+.scrollUpBtn, .scrollDownBtn {
+    background-color: var(--background-tertiary-lite);
+    background-repeat: no-repeat;
+    width: 144px;
+    height: 48px;
+    border: none;
+    position: absolute;
+    z-index: 20;
+    right: calc(50% - 72px);
+} 
+
+.scrollUpBtn {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none'%3E%3Cpath d='M39 25L24 8L9 25' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M24 8V41' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-position: center;
+    top: 2px;
+    border-bottom: 2px solid black;
+}
+
+.scrollDownBtn {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none'%3E%3Cpath d='M9 23L24 40L39 23' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M24 40V7' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-position: center;
+    bottom: 2px;
+    border-top: 2px solid black;
+}
+
+.scrollUpBtn:hover, .scrollDownBtn:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.scrollUpBtn:active, .scrollDownBtn:active {
+    transform: scale(0.95);
+}
+
+.eventList {
+    height: 100%;
+    overflow-y: hidden;
+    padding: 0 8px;
+}
+
+.eventList hr {
+    height: 1px;
+    border: none;
+    background-color: black;
+    box-shadow: none;
+}
+
+.eventListCard {
+    background-color: var(--background-primary-dark);
+    margin: 1rem 0;
+    height: 18rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.eventListCard:hover {
+    cursor: pointer;
+    transform: scale(1.02);
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.4);
+}
+
+.eventInfoContainer {
+    background-color: rgba(255, 255, 255, 0.7);
+    width: 100%;
+    height: 100%;
+    padding: 4rem 2rem 4rem 2rem;
+    display: none;
+    position: fixed;
+    z-index: 50;
+    top: 0;
+    left: 0;
+}
+
+.eventInfoOpen {
+    display: block;
+}
+
+.infoCloseBtn {
+    display: block;
+    position: absolute;
+    width: 3rem;
+    height: 3rem;
+    border: 2px solid white;
+    border-radius: 24px;
+    top: 40px;
+    right: 8px;
+    color: white;
+    background-color: var(--background-primary-dark);
+    font-size: 44px;
+    line-height: 44px;
+}
+
+.infoCloseBtn:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+@media (min-width: 440px) {
+    .eventListContainer {
+        width: 24rem;
+    }
+}
+
+@media (min-width: 640px) {
+    .eventListContainer {
+        width: 100%;
+    }
+
+    .eventList {
+        padding: 0 12px;
+    }
+
+    .eventListCard {
+        height: 10rem;
+        flex-direction: row;
+    }
+}
+
+@media (min-width: 992px) {
+    .eventsSection {
+        grid-template-columns: 1fr 24rem;
+    }
+
+    .eventListContainer {
+        grid-area: 1/ 2/ 3/ 3;
+        width: 24rem;
+    }
+
+    .eventListCard {
+        height: 18rem;
+        flex-direction: column;
+    }
+
+    .eventInfoContainer {
+        display: block;
+        position: static;
+        grid-area: 2/ 1/ 3/ 2;
+        height: auto;
+        margin-top: 1rem;
+        margin-bottom: 60px;
+        padding: 0;
+    }
+
+    .infoCloseBtn {
+        display: none;
+    }
+}
+

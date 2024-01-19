@@ -1,0 +1,85 @@
+.main {
+    background-color: var(--background-primary-dark);
+
+}
+
+.contactContainer {
+    background-size: cover;
+    background-position: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.contactTitle {
+    margin: 2rem;
+}
+
+.contactTitle h2 {
+    font-family: var(--font-header);
+    font-size: 4rem;
+    font-weight: 600;
+    color: white;
+    text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.4);
+}
+
+.contactTitle hr {
+    background-color: white;
+    height: 3px;
+    border: 1px solid white;
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.4);
+}
+
+.contactData {
+    margin: 2rem;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 1rem;
+    padding: 1rem;
+    grid-column: 1 / 2;
+}
+
+.contactDataCard {
+    margin: 20px 0;
+    font-family: var(--font-paragraph);
+    color: white;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.contactDataCard h4 {
+    font-size: 20px;
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+
+.contactDataCard p {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.messageFormContainer {
+    grid-column: 2 / 3;
+    grid-row: 1 / 3;
+    background-color: rgba(225, 226, 228, 0.7);
+    padding: 2rem;
+}
+
+.messageTitle {
+    font-family: var(--font-paragraph);
+    color: var( --text-color-primary-dark);
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.mapContainer {
+    height: 25rem;
+    width: 100%;
+}
+
+.dayName {
+    display: inline-block;
+    width: 7rem;
+    margin-right: 1rem;
+}

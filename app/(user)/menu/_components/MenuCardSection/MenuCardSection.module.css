@@ -1,0 +1,74 @@
+.menuCardSection {
+    margin: 2rem 1rem;
+    background-color: var(--background-primary-lite);
+    padding: 1rem;
+    scroll-margin-top: 2rem;
+}
+
+.cardSectionTitle {
+    font-family: var(--font-header);
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.cardSectionTable {
+    padding-left: 2rem;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cardSectionTable td {
+    border-bottom: 1px solid black;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.cardSectionTable tr:last-child td {
+    border-bottom: none;
+}
+
+.cardSectionItem td h4 {
+    font-family: var(--font-list-item);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 26px;
+}
+
+.cardSectionItem td p {
+    font-family: var(--font-list-item);
+    font-size: 14px;
+}
+
+.cardSectionItem td:last-child {
+    width: 5rem;
+    text-align: right;
+    font-family: var(--font-list-item);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+@media (min-width: 640px) {
+    .menuCardSection {
+        margin: 2rem;
+    }
+
+    .cardSectionTitle {
+        font-size: 2rem;
+    }
+
+    .cardSectionItem td h4 {
+        font-size: 20px;
+        line-height: 24px;
+    }
+    
+    .cardSectionItem td p {
+        font-size: 1rem;
+    }
+    
+    .cardSectionItem td:last-child {
+        width: 7rem;
+        font-size: 20px;
+    }
+    
+}
