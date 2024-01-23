@@ -1,13 +1,78 @@
+.listContainer {
+    height: 100%;
+    padding: 2rem 0;
+}
+
+.listTitle {
+    text-align: center;
+    font-family: var(--font-paragraph);
+    font-size: 20px;
+    font-weight: 500;
+    padding-bottom: 4px;
+    border-bottom: 2px solid black;
+    margin-bottom: 2rem;
+}
+
 .listItem {
+    padding: 1rem;
+    border-radius: 12px;
     margin: 1rem 0;
-}
-
-.eventListContainer {
-    padding: 1rem;
-}
-
-.listItem {
-    padding: 1rem;
+    font-family: var(--font-paragraph);
     background-color: var(--background-primary-lite);
     box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.3);
+}
+
+.itemDate {
+    font-size: 14px;
+    font-weight: 400;
+    text-align: right;
+}
+
+.itemTitle {
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 600;
+    margin: 8px 0;
+}
+
+.itemExcerpt {
+    font-size: 16px;
+    line-height: 21px;
+    min-height: 42px;
+    font-weight: 400;
+    margin: 8px 0;
+}
+
+.buttons {
+    margin-top: 1rem;
+    display: flex;
+    gap: 2rem;
+    justify-content: flex-end;
+}
+
+.buttonPrimary, .buttonSecondary {
+    height: 30px;
+    font-family: var(--font-button);
+    font-size: 16px;
+    font-weight: 600;
+    min-width: 6rem;
+    border: 2px solid var(--button-color-primary);
+    border-radius: 8px;
+}
+  
+.buttonPrimary:hover, .buttonSecondary:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.3);
+    font-weight: 700;
+}
+
+.buttonPrimary {
+    color: var(--button-color-primary);
+    background-color: white;
+}
+
+.buttonSecondary {
+    color: white;
+    background-color: var(--button-color-primary);
 }

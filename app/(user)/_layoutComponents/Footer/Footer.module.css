@@ -1,6 +1,6 @@
 .footerContainer {
     background-color: var(--background-quaternary-dark);
-    padding: 1rem 0 2rem 0;
+    padding: 1rem 0;
 }
 
 .footerContainer h5 {
@@ -68,6 +68,33 @@
 .mediaLink img {
     width: 3rem;
     height: 3rem;
+}
+
+.createdBy {
+    margin: 1rem;
+    font-family: var(--font-paragraph);
+    font-size: 12px;
+    line-height: 18px;
+    color: white;
+    font-size: 400;
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+}
+
+.createdBy a {
+    border-bottom: 1px solid white;
+}
+
+.createdBy a::after {
+    /* vertical-align: baseline; */
+    content: "\27F6" ;
+    margin-left: 8px;
+}
+
+
+.createdBy a:hover {
+    transform: scale(1.1);
 }
 
 @media (min-width: 440px) {

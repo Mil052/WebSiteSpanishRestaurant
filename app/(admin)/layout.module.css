@@ -1,0 +1,67 @@
+.titleBar {
+    margin: 2rem;
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-navigation);
+    font-size: 24px; 
+}
+
+.titleBar h3 {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.titleBar a {
+    border-bottom: 1px solid black;
+}
+   
+.titleBar a::after {
+    content: "\27F6" ;
+    margin-left: 8px;
+}
+
+.titleBar a:hover {
+    transform: scale(1.1);
+}
+
+.footerContainer {
+    background-color: var(--background-quaternary-dark);
+    padding: 1rem 0;
+}
+
+.footerContainer h5 {
+    font-family: var(--font-header);
+    font-size: 24px;
+    color: white;
+    text-align: center;
+}
+
+.underline {
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+}
+
+.underline hr {
+    background-color: white;
+    height: 2px;
+    border: 1px solid white;
+    flex: 4 0 100px;
+}
+
+.underline span {
+    text-align: center;
+    color: white;
+    height: 3rem;
+    font-size: 24px;
+    line-height: 3rem;
+    margin: 0 auto;
+    flex: 1 0 130px;
+}
+
+@media (min-width: 440px) {
+    .underline span {
+        font-size: 2rem;
+        flex: 1 0 160px;
+    }
+}

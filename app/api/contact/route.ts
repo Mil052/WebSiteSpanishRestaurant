@@ -17,7 +17,7 @@ export const POST = async (request: Request) => {
     const clientName = formData.get('name') as string | null;
     const clientEmail = formData.get('email') as string  | null;
     const messageTitle = formData.get('title') as string  | null;
-    const messageText = formData.get('name') as string  | null;
+    const messageText = formData.get('message') as string  | null;
 
     const clientAdress = clientEmail ? { name: clientName ?? '', address: clientEmail} : undefined;
 

@@ -1,9 +1,7 @@
 'use client'
 import { useRef } from "react";
-import { QueryClient, QueryClientProvider, useMutation } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import styles from './MessageForm.module.css';
-
-const queryClient = new QueryClient();
 
 async function sendMessage (formData: FormData) {
     const response = await fetch('/api/contact', {
@@ -23,13 +21,19 @@ export default function MessageForm () {
     const formRef = useRef<HTMLFormElement>(null);
 
     const { mutate, isPending, isSuccess, isError, error, reset } = useMutation({
-        mutationFn: sendMessage
+        mutationFn: sendMessage,
+        onSuccess: () => formRef.current!.reset(),
     })
 
-    const submitMesage = async (formData: FormData) => {
-        await mutate(formData);
-        formRef.current!.reset();
+    let statusInfoBoxClass = styles.statusInfoBox;
+    if (isPending || isSuccess) {
+        statusInfoBoxClass = statusInfoBoxClass + ' ' + styles.statusOk;
     }
+    if (isError) {
+        statusInfoBoxClass = statusInfoBoxClass + ' ' + styles.statusAlert;
+    }
+
+    const submitMesage = (formData: FormData) => mutate(formData);
 
     return (
             <form action={submitMesage} ref={formRef} className={styles.messageForm}>
@@ -47,12 +51,13 @@ export default function MessageForm () {
                 </div>
                 <div className={styles.messageControl}>
                     <label htmlFor="message">message</label>
-                    <textarea name="message" id="message" cols={30} rows={10}></textarea>
+                    <textarea name="message" id="message" cols={20} rows={10}></textarea>
                 </div>
-                <div className={styles.statusInfoBox}>
+                <div className={statusInfoBoxClass}>
                     { isPending && 'Sending message...' }
                     { isSuccess && 'Your message has been sent.' }
                     { isError && error.message }
+                    { (isSuccess || isError) && <button type="button" onClick={reset} className={styles.infoBoxClose}>&#10005;</button>}
                 </div>
                 <button type="submit" className={styles.buttonSecondary}>SEND</button>
             </form>
@@ -60,3 +65,4 @@ export default function MessageForm () {
 }
 
 // https://tanstack.com/query/latest/docs/react/guides/mutations
+// &#215;

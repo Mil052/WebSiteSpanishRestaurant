@@ -4,6 +4,7 @@ import styles from './EventaManagement.module.css'
 import EventForm from "./EventForm/EventForm";
 import EventList from "./EventList/EventList";
 import { eventData } from "../../../../_utilities/eventsOperations";
+import { useQuery, useMutation } from '@tanstack/react-query'
 
 
 export default function EventsManagement () {
@@ -52,8 +53,12 @@ export default function EventsManagement () {
 
     return (
         <section className={styles.eventsSection}>
-            <EventForm editEventMode={!!editEventData} editEventData={ editEventData ?? null} submitEvent={submitEvent} resetFormMode={resetFormMode}/>
-            <EventList events={events} deleteEvent={deleteEvent} editEvent={editEvent}/>
+            <div className={styles.formContainer}>
+                <EventForm editEventMode={!!editEventData} editEventData={ editEventData ?? null} submitEvent={submitEvent} resetFormMode={resetFormMode}/>
+            </div>
+            <div className={styles.listContainer}>
+                <EventList events={events} deleteEvent={deleteEvent} editEvent={editEvent}/>
+            </div>
         </section>
     )
 }

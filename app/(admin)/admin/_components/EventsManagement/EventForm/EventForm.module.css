@@ -1,38 +1,73 @@
-.formContainer {
+.form {
     padding: 2rem;
-    background-color: var(--background-primary-dark);
-    max-width: 40rem;
+    background-color: #efefef;
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.formMode {
+    font-family: var(--font-paragraph);
+    font-size: 20px;
+    text-align: right;
+    font-weight: 500;
+    padding-bottom: 4px;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid black;
 }
 
 .formInput {
-    font-family: var(--font-paragraph);
-    font-size: 18px;
-    display: flex;
-    justify-content: space-between;
     margin: 1rem 0;
 }
 
 .formInput label {
+    display: block;
+    margin-bottom: 6px;
+    font-family: var(--font-paragraph);
+    font-size: 14px;
     font-weight: 500;
 }
 
 .formInput input {
     font-family: var(--font-paragraph);
-    font-size: 18px;
+    border: none;
+    font-size: 1rem;
+    line-height: 32px;
+    padding: 0 8px;
     font-weight: 400;
-    width: 25rem;
+    width: 100%;
+    background-color: white;
+    border-radius: 8px;
 }
 
 .formInput textarea {
     font-family: var(--font-paragraph);
-    font-size: 18px;
+    padding: 8px;
+    font-size: 1rem;
     font-weight: 400;
-    width: 25rem;
+    width: 100%;
+    border: none;
+    border-radius: 8px;
 }
+
+.formInput input[type="file"] {
+    padding: 0;
+}
+
+.formInput input[type="file"]::file-selector-button {
+        height: 32px;
+        font-family: var(--font-button);
+        font-size: 1rem;
+        font-weight: 600;
+        min-width: 9rem;
+        border: 3px solid var(--button-color-primary);
+        border-radius: 8px;
+        color: white;
+        background-color: var(--button-color-primary);
+        margin-right: 8px;
+    }
 
 .uploadedImageControl {
     font-family: var(--font-paragraph);
-    font-size: 16px;
+    font-size: 14px;
     display: flex;
     gap: 24px;
     margin: 1rem 0;
@@ -41,4 +76,32 @@
 .buttons {
     display: flex;
     gap: 2rem;
+    justify-content: flex-end;
+}
+
+.buttonPrimary, .buttonSecondary {
+    height: 40px;
+    font-family: var(--font-button);
+    font-size: 18px;
+    font-weight: 600;
+    min-width: 9rem;
+    border: 3px solid var(--button-color-primary);
+    border-radius: 12px;
+}
+  
+.buttonPrimary:hover, .buttonSecondary:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.3);
+    font-weight: 700;
+}
+
+.buttonPrimary {
+    color: var(--button-color-primary);
+    background-color: white;
+}
+
+.buttonSecondary {
+    color: white;
+    background-color: var(--button-color-primary);
 }

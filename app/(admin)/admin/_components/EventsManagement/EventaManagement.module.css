@@ -1,6 +1,22 @@
 .eventsSection {
     display: flex;
     gap: 2rem;
-    flex-direction: row;
+    flex-direction: column-reverse;
     justify-content: space-between;
+}
+
+
+
+@media (min-width: 992px) {
+    .eventsSection {
+        flex-direction: row;
+    }
+
+    .formContainer {
+        flex: 3 0 30rem;
+    }
+    
+    .listContainer {
+        flex: 2 0 20rem;
+    }
 }

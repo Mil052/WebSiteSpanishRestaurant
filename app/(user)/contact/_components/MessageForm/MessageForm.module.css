@@ -5,8 +5,9 @@
 
 .textControl {
     margin: 1rem 0;
-    font-size: 24px;
+    font-size: 20px;
     line-height: 32px;
+    width: 100%;
     display: flex;
     border-bottom: 2px solid var( --text-color-primary-dark);
     padding: 4px 8px;
@@ -18,11 +19,12 @@
 }
 
 .textControl input {
+    width: 10rem;
     font-family: inherit;
     font-size: inherit;
     border: none;
     outline: none;
-    flex: 1 0 18rem;
+    flex: 1 1 10rem;
     background-color: transparent;
 }
 
@@ -36,14 +38,14 @@
 }
 
 .messageControl label {
-    font-size: 24px;
+    font-size: 20px;
     line-height: 32px;
 }
 
 .messageControl textarea {
     width: 100%;
     font-family: inherit;
-    font-size: 18px;
+    font-size: 1rem;
     line-height: 24px;
     border: none;
     outline: none;
@@ -52,10 +54,53 @@
 }
 
 .statusInfoBox {
+    position: relative;
+    text-align: center;
+    margin: 20px 1rem 1rem 1rem;
     height: 2rem;
-    font-size: 20px;
-    line-height: 2rem;
-    color: red;
+    font-size: 1rem;
+    line-height: 30px;
+    border-radius: 6px;
+}
+
+.statusOk {
+    border: 1px solid #4a6009;
+    color: #4a6009;
+}
+
+.statusAlert {
+    border: 1px solid #a83a12;
+    color: #a83a12;
+}
+
+.infoBoxClose {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    width: 24px;
+    height: 24px;
+    border-radius: 12px;
+    color: white;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.statusOk .infoBoxClose {
+    background-color: #4a6009;
+    border: 1px solid #4a6009;
+}
+
+.statusAlert .infoBoxClose {
+    background-color: #a83a12;
+    border: 1px solid #a83a12;
+}
+
+.infoBoxClose:hover {
+    transform: scale(1.1);
+}
+
+.infoBoxClose:active{
+    transform: scale(0.95);
 }
 
 
@@ -78,4 +123,21 @@
     transform: scale(1.05);
     box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.3);
     font-weight: 700;
-  }
+}
+
+@media (min-width: 576px) {
+    .textControl {
+        font-size: 24px;
+        line-height: 32px;
+    }
+
+    .messageControl label {
+        font-size: 24px;
+        line-height: 32px;
+    }
+
+    .messageControl textarea {
+        font-size: 18px;
+        line-height: 24px;
+    }
+}

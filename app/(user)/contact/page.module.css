@@ -7,16 +7,16 @@
     background-size: cover;
     background-position: center;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
 }
 
 .contactTitle {
-    margin: 2rem;
+    margin: 2rem 1rem;
 }
 
 .contactTitle h2 {
     font-family: var(--font-header);
-    font-size: 4rem;
+    font-size: 40px;
     font-weight: 600;
     color: white;
     text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.4);
@@ -30,10 +30,10 @@
 }
 
 .contactData {
-    margin: 2rem;
+    align-self: center;
+    margin: 2rem 0;
     background-color: rgba(0, 0, 0, 0.4);
-    border-radius: 1rem;
-    padding: 1rem;
+    padding: 1rem 8px;
     grid-column: 1 / 2;
 }
 
@@ -42,26 +42,29 @@
     font-family: var(--font-paragraph);
     color: white;
     display: flex;
-    gap: 2rem;
+    gap: 0;
     align-items: center;
 }
 
+.contactDataCard img {
+    max-height: 40px;
+}
+
 .contactDataCard h4 {
-    font-size: 20px;
+    font-size: 1rem;
     margin-bottom: 4px;
     font-weight: 600;
 }
 
 .contactDataCard p {
-    font-size: 20px;
+    font-size: 1rem;
     font-weight: 400;
 }
 
 .messageFormContainer {
-    grid-column: 2 / 3;
-    grid-row: 1 / 3;
+    grid-column: 1 / 2;
     background-color: rgba(225, 226, 228, 0.7);
-    padding: 2rem;
+    padding: 2rem 8px;
 }
 
 .messageTitle {
@@ -82,4 +85,64 @@
     display: inline-block;
     width: 7rem;
     margin-right: 1rem;
+}
+
+@media (min-width: 440px) {
+    .contactTitle h2 {
+        font-size: 3rem;
+    }
+    .contactData {
+        margin: 2rem 1rem;
+        border-radius: 1rem;
+        padding: 1rem;
+    }
+
+    .messageFormContainer {
+        padding: 2rem 1rem;
+    }
+}
+
+@media (min-width: 576px) {
+    .contactTitle {
+        margin: 2rem;
+    }
+
+    .contactTitle h2 {
+        font-size: 4rem;
+        font-weight: 600;
+    }
+
+    .contactData {
+        margin: 2rem;
+    }
+
+    .contactDataCard {
+        gap: 2rem;
+    }
+
+    .contactDataCard img {
+        max-height: unset;
+    }
+    .contactDataCard h4 {
+        font-size: 20px;
+    }
+    
+    .contactDataCard p {
+        font-size: 20px;
+    }
+
+    .messageFormContainer {
+        padding: 2rem;
+    }
+}
+
+@media (min-width: 992px) { 
+    .contactContainer {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .messageFormContainer {
+        grid-column: 2 / 3;
+        grid-row: 1 / 3;
+    }
 }

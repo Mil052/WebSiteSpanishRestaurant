@@ -76,27 +76,27 @@ export default function EventForm ({editEventMode, editEventData, submitEvent, r
     }
 
     return (
-        <form action={formSubmitHandler} className={styles.formContainer}>
-            <h3>Edit Event Mode {editEventMode ? 'ON' : 'OFF'}</h3>
+        <form action={formSubmitHandler} className={styles.form}>
+            <h3 className={styles.formMode}>{editEventMode ? 'edit exixting event' : 'add new event'}</h3>
             <div className={styles.formInput}>
-                <label htmlFor="title">Event title</label>
+                <label htmlFor="title">title</label>
                 <input type="text" name="title" id="title" onChange={changeHandler} value={eventFormData.title}/>
             </div>
             <div className={styles.formInput}>
-                <label htmlFor="subtitle">Event subtitle</label>
+                <label htmlFor="subtitle">subtitle</label>
                 <input type="text" name="subtitle" id="subtitle" value={eventFormData.subtitle} onChange={changeHandler}/>
             </div>
             <div className={styles.formInput}>
-                <label htmlFor="date">Event date</label>
+                <label htmlFor="date">date</label>
                 <input type="date" name="date" id="date" onChange={(e) => console.log(e.target.value)}/>
             </div>
             <div className={styles.formInput}>
-                <label htmlFor="excerpt">Event excerpt</label>
+                <label htmlFor="excerpt">excerpt</label>
                 <input type="text" name="excerpt" id="excerpt" value={eventFormData.excerpt} onChange={changeHandler}/>
             </div>
             <div className={styles.formInput}>
-                <label htmlFor="content">Event information</label>
-                <textarea name="content" id="content" cols={30} rows={10} value={eventFormData.content} onChange={changeHandler}></textarea>
+                <label htmlFor="content">description</label>
+                <textarea name="content" id="content" cols={30} rows={12} value={eventFormData.content} onChange={changeHandler}></textarea>
             </div>
             {   
                 eventFormData.imageSrc &&
@@ -106,16 +106,16 @@ export default function EventForm ({editEventMode, editEventData, submitEvent, r
                 </div>
             }
             <div className={styles.formInput}>
-                <label htmlFor="image">Add image file</label>
+                <label htmlFor="image">add image</label>
                 <input id="image" name="image" type="file" accept="image/png, image/jpeg" disabled={ !!eventFormData.imageSrc && !eventFormData.deleteUploadedImg} value={undefined} ref={fileInputRef}/>
             </div>
             <div className={styles.formInput}>
-                <label htmlFor="imageAlt">Image description</label>
+                <label htmlFor="imageAlt">image description</label>
                 <input type="text" name="imageAlt" id="imageAlt" value={eventFormData.imageAlt} onChange={changeHandler}/>
             </div>
             <div className={styles.buttons}>
-                <button type="submit">{editEventMode ? 'Update Event' : 'Add Event'}</button>
-                <button type="button" onClick={resetForm}>{editEventMode ? 'Go Back' : 'Clear Form'}</button>
+                <button type="submit" className={styles.buttonSecondary}>{editEventMode ? 'Update Event' : 'Add Event'}</button>
+                <button type="button" onClick={resetForm} className={styles.buttonPrimary}>{editEventMode ? 'Go Back' : 'Clear Form'}</button>
             </div>
         </form>
     )
