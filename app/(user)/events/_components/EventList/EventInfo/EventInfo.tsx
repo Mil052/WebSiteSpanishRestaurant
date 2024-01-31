@@ -1,4 +1,4 @@
-import { eventData } from "../../../../../_utilities/eventsOperations";
+import { eventData } from "../../../../../api/events/_utilities/eventsOperations";
 import ReactMarkdown from 'react-markdown';
 import styles from './EventInfo.module.css';
 import Image from "next/image";

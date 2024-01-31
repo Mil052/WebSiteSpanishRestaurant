@@ -10,15 +10,15 @@ export default function GoogleMap () {
   return (
     <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!}>
       <div style={{height: '100%', width: '100%'}}>
-        <Map zoom={16} center={{lat: 51.11044, lng: 17.03099}} gestureHandling={'greedy'} disableDefaultUI={true} mapId={process.env.NEXT_PUBLIC_MAP_ID}>
+        <Map zoom={16} center={{lat: 51.11044, lng: 17.03099}} gestureHandling={'cooperative'} disableDefaultUI={true} mapId={process.env.NEXT_PUBLIC_MAP_ID}>
           <AdvancedMarker ref={markerRef} position={{lat: 51.11044, lng: 17.03099}} onClick={() => setOpenInfo(true)}>
-            <Pin background={'#FBBC04'} glyphColor={'#000'} borderColor={'#000'} />
+            <Pin background={'#a1461e'} glyphColor={'#d7cfcc'} borderColor={'#a1461e'} scale={1.5} />
           </AdvancedMarker>
           {openInfo && <InfoWindow anchor={marker} onCloseClick={() => setOpenInfo(false)}>
             <div>
-              <h2>Hello everyone!</h2>
-              <p>This is an Info Window</p>
-              <img src="..." />
+              <h2>Welcome to La Fabrica Del Gusto!</h2>
+              <p style={{textAlign: 'center', margin: '4px 0'}}>The spirit of Spain in the middle of Wrocław.</p>
+              <img src="/contact/fiesta_time.jpg" width={160} style={{ display: 'block', margin: 'auto' }} />
             </div>
           </InfoWindow>}
         </Map>

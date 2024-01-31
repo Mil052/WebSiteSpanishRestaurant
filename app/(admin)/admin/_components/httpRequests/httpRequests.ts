@@ -1,4 +1,4 @@
-import { eventData } from "@/app/_utilities/eventsOperations";
+import { eventData } from "@/app/api/events/_utilities/eventsOperations";
 
 export async function getEvents () {
     const response = await fetch('/api/events');
@@ -9,11 +9,11 @@ export async function getEvents () {
     return actualEvents as eventData[];
 } 
 
-export async function deleteEvent (id: number, imageFileName: string|null) {
+export async function deleteEvent (eventIdentifier: {eventId: number, imageFileName: string|null} ) {
     const response = await fetch('/api/events', {
         method: "DELETE",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({eventId: id, imageFileName: imageFileName})
+        body: JSON.stringify(eventIdentifier)
     });
     if (!response.ok) {
         throw new Error("An error occurred. Can't delete event.");
@@ -28,7 +28,8 @@ export async function addEvent (formData: FormData) {
         body: formData,
     });
     if (!response.ok) {
-        throw new Error("An error occurred. Can't add event.");
+        const responseData = await response.json();
+        throw new Error(responseData.error);
     }
     return true;
 }

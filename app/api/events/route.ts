@@ -1,35 +1,42 @@
 import { NextResponse } from "next/server";
-import { addNewEvent, addEventImage, deleteImage, deleteEvent, getCashedEvents, updateEvent, eventData } from "@/app/_utilities/eventsOperations";
+import { addNewEvent, addEventImage, deleteImage, deleteEvent, getCashedEvents, updateEvent, eventData } from "./_utilities/eventsOperations";
+import { validateEventData, ValidationError } from './_utilities/validateEventData';
+import { revalidatePath } from 'next/cache';
 
 export const POST = async (request: Request) => {
   const formData = await request.formData();
-  let imageFileName: string|null = null;
-
-  const image = formData.get("image") as File;
   const idNumber = Date.now();
 
+  const newEventData = {
+    id: idNumber,
+    title: formData.get('title'),
+    subtitle: formData.get('subtitle'),
+    date: formData.get('date'),
+    excerpt: formData.get('excerpt'),
+    imageSrc: null,
+    imageAlt: formData.get('imageAlt'),
+    content: formData.get('content')
+  } as eventData;
+
+  const image: File | null = formData.get("image") as File;
+  if (image && (image.size > 0)) {
+    newEventData.imageSrc = Date.now() + image.name.replaceAll(" ", "_");
+  }
+
   try {
-    if (image && (image.size > 0)) {
-      imageFileName = Date.now() + image.name.replaceAll(" ", "_");
-      addEventImage(image, imageFileName!);
+    validateEventData(newEventData);
+    if (newEventData.imageSrc) {
+      addEventImage(image, newEventData.imageSrc);
     }
-
-    const newEventData = {
-      id: idNumber,
-      title: formData.get('title'),
-      subtitle: formData.get('subtitle'),
-      date: formData.get('date'),
-      excerpt: formData.get('excerpt'),
-      imageSrc: imageFileName,
-      imageAlt: formData.get('imageAlt'),
-      content: formData.get('content')
-    } as eventData;
-
     addNewEvent(newEventData);
+    revalidatePath('/events');
     return NextResponse.json({message: "Success"}, {status: 201});
   } catch (error) {
-    console.log("Error occured ", error);
-    return NextResponse.json({error: "Failed"}, {status: 500});
+    if (error instanceof ValidationError) {
+      return NextResponse.json({error: error.message}, {status: 400});
+    } else {
+      return NextResponse.json({error: "An error occurred. Failed to add new event."}, {status: 500});
+    }
   }
 };
 
@@ -46,6 +53,7 @@ export const DELETE = async (request: Request) => {
       deleteImage(event.imageFileName);
     }
     deleteEvent(event.eventId);
+    revalidatePath('/events');
     return NextResponse.json({message: "Success"}, {status: 200})
   } catch (error) {
     console.log("Error occured ", error);
@@ -99,6 +107,7 @@ export const PATCH = async (request: Request) => {
     } as eventData;
     
     updateEvent(newEventData, preserveExistingImage);
+    revalidatePath('/events');
     return NextResponse.json({message: "Success"}, {status: 201});
   } catch (error) {
     console.log("Error occured ", error);

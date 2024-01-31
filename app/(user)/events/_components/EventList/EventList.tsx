@@ -1,6 +1,6 @@
 'use client'
 
-import { eventData } from "../../../../_utilities/eventsOperations";
+import { eventData } from "../../../../api/events/_utilities/eventsOperations";
 import EventShortcut from "./EventShortcut/EventShortcut";
 import EventInfo from "./EventInfo/EventInfo";
 import styles from './EventList.module.css';

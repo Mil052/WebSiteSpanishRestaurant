@@ -1,4 +1,4 @@
-import { eventData } from "../../../../../_utilities/eventsOperations";
+import { eventData } from "../../../../../api/events/_utilities/eventsOperations";
 import styles from "./EventShortcut.module.css";
 import Image from "next/image";
 

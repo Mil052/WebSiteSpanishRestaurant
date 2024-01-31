@@ -1,9 +1,9 @@
 'use client'
 import styles from './EventForm.module.css';
-import { eventData } from "../../../../../_utilities/eventsOperations";
+import { eventData } from "../../../../../api/events/_utilities/eventsOperations";
 import { useState, useEffect, useRef } from 'react';
 
-type eventFormData = {
+type eventFormState = {
     id: number|null,
     title: string,
     subtitle: string,
@@ -15,7 +15,7 @@ type eventFormData = {
     content: string
 }
 
-const emptyForm: eventFormData= {
+const emptyForm: eventFormState = {
     id: null,
     title: "",
     subtitle: "",
@@ -27,27 +27,27 @@ const emptyForm: eventFormData= {
     content: ""
 };
 
-export default function EventForm ({editEventMode, editEventData, submitEvent, resetFormMode}: {editEventMode: boolean, editEventData: eventData | null, submitEvent: (formData: FormData) => Promise<void>, resetFormMode: () => void}) {
+export default function EventForm ({formMode, editEventData, cancelEditMode, handleAddEvent, handleUpdateEvent}: {formMode: 'ADD NEW EVENT' | 'EDIT EVENT', editEventData: eventData | null, cancelEditMode: () => void, handleAddEvent: (formData: FormData) => void, handleUpdateEvent: (formData: FormData) => void}) {
 
     const [eventFormData, setEventFormData] = useState(emptyForm);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
-        if (editEventMode && editEventData) {
+        if (formMode === 'EDIT EVENT' && editEventData) {
             setEventFormData({...editEventData, deleteUploadedImg: false});
         } else {
             setEventFormData(emptyForm);
         }
-    }, [editEventMode, editEventData])
+    }, [formMode, editEventData]);
 
-    const changeHandler = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setEventFormData((prevState) => ({
           ...prevState,
           [e.target.name]: e.target.value
         }));
     };
 
-    const changeDeleteImageHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const checkboxDeleteImageHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEventFormData((prevState) => ({
             ...prevState,
             deleteUploadedImg: e.target.checked
@@ -55,36 +55,36 @@ export default function EventForm ({editEventMode, editEventData, submitEvent, r
     }
 
     const resetForm = () => {
-        resetFormMode();
+        cancelEditMode();
         setEventFormData(emptyForm);
         fileInputRef.current!.value = "";
     }
 
-    const formSubmitHandler = (formData: FormData) => {
-        if (editEventMode) {
-            formData.set("id", eventFormData.id!.toString());
-        }
-
+    const submitHandler = (formData: FormData) => {
         const image: File|null = formData.get('image') as File;
-        console.log('form image size ', image?.size);
-
         if ( image && image.size === 0 ) {
             formData.delete("image");
         }
-        submitEvent(formData);
+        if (formMode === 'EDIT EVENT') {
+            formData.set("id", eventFormData.id!.toString());
+            handleUpdateEvent(formData);
+        }
+        if (formMode === 'ADD NEW EVENT') {
+            handleAddEvent(formData);
+        }
         resetForm();
     }
 
     return (
-        <form action={formSubmitHandler} className={styles.form}>
-            <h3 className={styles.formMode}>{editEventMode ? 'edit exixting event' : 'add new event'}</h3>
+        <form action={submitHandler} className={styles.form}>
+            <h3 className={styles.formMode}>{(formMode === 'EDIT EVENT') ? 'edit exixting event' : 'add new event'}</h3>
             <div className={styles.formInput}>
                 <label htmlFor="title">title</label>
-                <input type="text" name="title" id="title" onChange={changeHandler} value={eventFormData.title}/>
+                <input type="text" name="title" id="title" onChange={inputChangeHandler} value={eventFormData.title}/>
             </div>
             <div className={styles.formInput}>
                 <label htmlFor="subtitle">subtitle</label>
-                <input type="text" name="subtitle" id="subtitle" value={eventFormData.subtitle} onChange={changeHandler}/>
+                <input type="text" name="subtitle" id="subtitle" value={eventFormData.subtitle} onChange={inputChangeHandler}/>
             </div>
             <div className={styles.formInput}>
                 <label htmlFor="date">date</label>
@@ -92,16 +92,16 @@ export default function EventForm ({editEventMode, editEventData, submitEvent, r
             </div>
             <div className={styles.formInput}>
                 <label htmlFor="excerpt">excerpt</label>
-                <input type="text" name="excerpt" id="excerpt" value={eventFormData.excerpt} onChange={changeHandler}/>
+                <input type="text" name="excerpt" id="excerpt" value={eventFormData.excerpt} onChange={inputChangeHandler}/>
             </div>
             <div className={styles.formInput}>
                 <label htmlFor="content">description</label>
-                <textarea name="content" id="content" cols={30} rows={12} value={eventFormData.content} onChange={changeHandler}></textarea>
+                <textarea name="content" id="content" cols={30} rows={12} value={eventFormData.content} onChange={inputChangeHandler}></textarea>
             </div>
             {   
                 eventFormData.imageSrc &&
                 <div className={styles.uploadedImageControl}>
-                    <input type="checkbox" name="deleteUploadedImg" id="deleteUploadedImg" value={eventFormData.imageSrc} checked={eventFormData.deleteUploadedImg} onChange={changeDeleteImageHandler}/>
+                    <input type="checkbox" name="deleteUploadedImg" id="deleteUploadedImg" value={eventFormData.imageSrc} checked={eventFormData.deleteUploadedImg} onChange={checkboxDeleteImageHandler}/>
                     <label htmlFor="deleteUploadedImg">Uploaded image: {eventFormData.imageSrc} (check to delete)</label>
                 </div>
             }
@@ -111,11 +111,11 @@ export default function EventForm ({editEventMode, editEventData, submitEvent, r
             </div>
             <div className={styles.formInput}>
                 <label htmlFor="imageAlt">image description</label>
-                <input type="text" name="imageAlt" id="imageAlt" value={eventFormData.imageAlt} onChange={changeHandler}/>
+                <input type="text" name="imageAlt" id="imageAlt" value={eventFormData.imageAlt} onChange={inputChangeHandler}/>
             </div>
             <div className={styles.buttons}>
-                <button type="submit" className={styles.buttonSecondary}>{editEventMode ? 'Update Event' : 'Add Event'}</button>
-                <button type="button" onClick={resetForm} className={styles.buttonPrimary}>{editEventMode ? 'Go Back' : 'Clear Form'}</button>
+                <button type="submit" className={styles.buttonSecondary}>{(formMode === 'EDIT EVENT') ? 'Update Event' : 'Add Event'}</button>
+                <button type="button" onClick={resetForm} className={styles.buttonPrimary}>{(formMode === 'EDIT EVENT') ? 'Go Back' : 'Clear Form'}</button>
             </div>
         </form>
     )

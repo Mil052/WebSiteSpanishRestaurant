@@ -1,64 +1,63 @@
 'use client'
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styles from './EventaManagement.module.css'
 import EventForm from "./EventForm/EventForm";
 import EventList from "./EventList/EventList";
-import { eventData } from "../../../../_utilities/eventsOperations";
-import { useQuery, useMutation } from '@tanstack/react-query'
-
+import { eventData } from "../../../../api/events/_utilities/eventsOperations";
+import { useQuery, useMutation } from '@tanstack/react-query';
+import { getEvents, deleteEvent, addEvent, updateEvent } from "../httpRequests/httpRequests";
 
 export default function EventsManagement () {
-    const [events, setEvents] = useState<eventData[]>([]);
+    const [error, setError] = useState<string|null>(null);
     const [editEventData, setEditEventData] = useState<eventData | null>(null); 
-
-    const getEvents = async () => {
-        const response = await fetch('/api/events');
-        const actualEvents = await response.json() as eventData[];
-        setEvents(actualEvents);
-    } 
-
-    const deleteEvent = async (id: number, imageFileName: string|null) => {
-        const response = await fetch('/api/events', {
-            method: "DELETE",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({eventId: id, imageFileName: imageFileName})
-        });
-        console.log(response);
-        return getEvents(); // get actual list of events from backend
-    }
+    
+    const {data: events, isError: isLoadingEventsError, failureCount, refetch} = useQuery({queryKey: ['events'], queryFn: getEvents, initialData: [], retry: 3, retryDelay: attempt => attempt * 1000});
+    const {mutate: handleDeleteEvent} = useMutation({mutationFn: deleteEvent, onSuccess: () => refetch(), onError: (error) => setError(error.message)});
+    const {mutate: handleAddEvent} = useMutation({mutationFn: addEvent, onSuccess: () => refetch(), onError: (error) => setError(error.message)});
+    const {mutate: handleUpdateEvent} = useMutation({mutationFn: updateEvent, onSuccess: () => refetch(), onError: (error) => setError(error.message)});
 
     const editEvent = (event: eventData) => {
         setEditEventData(event);
     }
 
-    const resetFormMode = () => {
+    const cancelEditMode = () => {
         setEditEventData(null);
     }
 
-    const submitEvent = async (formData: FormData) => {
-        console.log('delete image: ', formData.get('deleteUploadedImg'));
-        const image = formData.get('image');
-        console.log('new image: ', image);
-        const response = await fetch('/api/events', {
-            method: editEventData ? "PATCH" : "POST",
-            // headers: {"Content-Type": "multipart/form-data"}; boundary=MyBoundaryString,
-            body: formData,
-        });
-        return getEvents();
+    const formMode: 'ADD NEW EVENT' | 'EDIT EVENT' = editEventData ? 'EDIT EVENT' : 'ADD NEW EVENT';
+
+    console.log('isLoadingEventsError: ', isLoadingEventsError);
+    console.log('failureCount: ', failureCount);
+
+    if (isLoadingEventsError && (failureCount === 4)) {
+        console.log('condition true');
+        return (
+            <div className={styles.loadingEventsErrorBox}>
+                <p><span>Loading Events Error.</span> <span>Please try again later.</span></p>
+            </div>
+        );
     }
 
-    useEffect(() => {
-        getEvents();
-    }, [])
+    const clearError = () => setError(null);
 
     return (
-        <section className={styles.eventsSection}>
-            <div className={styles.formContainer}>
-                <EventForm editEventMode={!!editEventData} editEventData={ editEventData ?? null} submitEvent={submitEvent} resetFormMode={resetFormMode}/>
+        <>
+            <div className={styles.mutationsErrorContainer}>
+                {error &&
+                    <div className={styles.errorBox}>
+                        <p>{error}</p>
+                        <button type="button" className={styles.errorBoxClose} onClick={clearError}>&#10005;</button>
+                    </div>
+                }
             </div>
-            <div className={styles.listContainer}>
-                <EventList events={events} deleteEvent={deleteEvent} editEvent={editEvent}/>
-            </div>
-        </section>
+            <section className={styles.eventsSection}>
+                <div className={styles.formContainer}>
+                    <EventForm formMode={formMode} editEventData={editEventData} cancelEditMode={cancelEditMode} handleAddEvent={handleAddEvent} handleUpdateEvent={handleUpdateEvent}/>
+                </div>
+                <div className={styles.listContainer}>
+                    <EventList events={events} handleDeleteEvent={handleDeleteEvent} editEvent={editEvent}/>
+                </div>
+            </section>
+        </>
     )
 }

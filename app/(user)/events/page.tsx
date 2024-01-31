@@ -1,8 +1,8 @@
 import styles from './page.module.css';
-import { getCashedEvents } from '../../_utilities/eventsOperations';
+import { getCashedEvents } from '../../api/events/_utilities/eventsOperations';
 import EventList from './_components/EventList/EventList';
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 export default function EventsPage() {
 
