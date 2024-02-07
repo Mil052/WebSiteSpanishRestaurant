@@ -1,6 +1,6 @@
 import { writeFileSync, readFileSync, unlinkSync } from 'fs';
 import path from 'path';
-import { cache } from 'react';
+import { unstable_cache } from 'next/cache';
 
 export type eventData = {
     id: number|null,
@@ -14,7 +14,11 @@ export type eventData = {
 }
 
 const eventDataFilePath = path.join(process.cwd(), 'eventsData', 'eventsData.json');
+<<<<<<< HEAD
 const eventImageDirectory = path.join(process.cwd(), 'public', 'event-image');
+=======
+const eventImageDirectory = path.join(process.cwd(), 'public', 'events-assets');
+>>>>>>> 0339122 (new hosting code change)
 
 function getEvents () {
     const fileContent = readFileSync(eventDataFilePath, 'utf-8');
@@ -23,7 +27,7 @@ function getEvents () {
     return eventsData as eventData[];
 }
 
-export const getCashedEvents = cache(getEvents);
+export const getCashedEvents = unstable_cache(async () => getEvents(), ['events-data'], {revalidate: 300, tags: ['events-data']});
 
 export function addNewEvent (newEventData: eventData) {
     const allEvents = getEvents();
@@ -33,7 +37,7 @@ export function addNewEvent (newEventData: eventData) {
 
 export async function addEventImage (image: File, imageName: string) {
     const fileBuffer = Buffer.from(await image.arrayBuffer());
-    const filePath = path.join(eventImageDirectory, imageName)
+    const filePath = path.join(eventImageDirectory, imageName);
     writeFileSync(filePath, fileBuffer);
 }
 

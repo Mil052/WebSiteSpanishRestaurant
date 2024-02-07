@@ -5,7 +5,7 @@ import GoogleMap from './_components/GoogleMap/GoogleMap';
 export default function ContactPage() {
     return (
       <main className={styles.main}>
-        <section className={styles.contactContainer} style={{ backgroundImage: `url(./contact/coffee_bg.jpg)`}}>
+        <section className={styles.contactContainer} style={{ backgroundImage: `url(./contact-assets/coffee_bg.jpg)`}}>
           <div className={styles.contactTitle}>
             <h2 >Get in touch!</h2>
             <hr/>

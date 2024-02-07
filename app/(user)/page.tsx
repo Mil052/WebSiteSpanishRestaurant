@@ -25,7 +25,7 @@ export default function Home() {
               <svg width="481" height="674" viewBox="0 0 481 674" fill="none" xmlns="http://www.w3.org/2000/svg" className={styles.roundedShapeOutline}>
                 <path d="M481 1H90.9016C33.7244 99.8423 1 214.6 1 337C1 459.4 33.7244 574.158 90.9016 673H481" stroke="#687c98"/>
               </svg>
-              <Image src="/about-restaurant/paella.png" alt="paella" className={styles.image} width={400} height={400}/>
+              <Image src="/about-assets/paella.png" alt="paella" className={styles.image} width={400} height={400}/>
             </div>
           </div>
           <div className={styles.infoBlock}> 

@@ -12,7 +12,7 @@ export default function MenuPage() {
   });
 
   return (
-    <main className={styles.main} style={{ backgroundImage: `url(./menu/restaurant-background.jpg)`}}>
+    <main className={styles.main} style={{ backgroundImage: `url(./menu-assets/restaurant-background.jpg)`}}>
       <div className={styles.menu}>
         <div className={styles.menuTitle}>
           <h2>Menu</h2>

@@ -27,5 +27,10 @@ Also worth noting is fact that only assets that are in the public directory at b
 
 * Download the code and instal dependencies (in the project directory run: `npm install`)
 * Run the app in the development mode (In the project directory run: `npm run dev`, then open http://localhost:3000 in the browser)  
+<<<<<<< HEAD
 You can also see the working app here: http://mgwebsites.eu  
 (You can go to admin panel through the 'admin panel' link at the bottom of the footer, or directly http://mgwebsites.eu/admin login: admin, password: admin )
+=======
+You can also see the working app here: http://la-fabrica-del-gusto.seeuinweb.pl
+(You can go to admin panel through the 'admin panel' link at the bottom of the footer, or directly http://la-fabrica-del-gusto.seeuinweb.pl/admin login: admin, password: admin )
+>>>>>>> 0339122 (new hosting code change)

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { addNewEvent, addEventImage, deleteImage, deleteEvent, getCashedEvents, updateEvent, eventData } from "./_utilities/eventsOperations";
 import { validateEventData, ValidationError } from './_utilities/validateEventData';
-import { revalidatePath } from 'next/cache';
+import { revalidateTag } from 'next/cache';
 
 export const POST = async (request: Request) => {
   const formData = await request.formData();
@@ -29,7 +29,7 @@ export const POST = async (request: Request) => {
       addEventImage(image, newEventData.imageSrc);
     }
     addNewEvent(newEventData);
-    revalidatePath('/events');
+    revalidateTag('events-data');
     return NextResponse.json({message: "Success"}, {status: 201});
   } catch (error) {
     if (error instanceof ValidationError) {
@@ -53,7 +53,7 @@ export const DELETE = async (request: Request) => {
       deleteImage(event.imageFileName);
     }
     deleteEvent(event.eventId);
-    revalidatePath('/events');
+    revalidateTag('events-data');
     return NextResponse.json({message: "Success"}, {status: 200})
   } catch (error) {
     console.log("Error occured ", error);
@@ -61,9 +61,9 @@ export const DELETE = async (request: Request) => {
   }
 }
 
-export const GET = (request: Request) => {
+export const GET = async (request: Request) => {
   try {
-    const events = getCashedEvents();
+    const events = await getCashedEvents();
     return Response.json(events, {status: 200});
   } catch (error) {
     console.log("Error occured ", error);
@@ -107,7 +107,7 @@ export const PATCH = async (request: Request) => {
     } as eventData;
     
     updateEvent(newEventData, preserveExistingImage);
-    revalidatePath('/events');
+    revalidateTag('events-data');
     return NextResponse.json({message: "Success"}, {status: 201});
   } catch (error) {
     console.log("Error occured ", error);
