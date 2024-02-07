@@ -14,11 +14,7 @@ export type eventData = {
 }
 
 const eventDataFilePath = path.join(process.cwd(), 'eventsData', 'eventsData.json');
-<<<<<<< HEAD
-const eventImageDirectory = path.join(process.cwd(), 'public', 'event-image');
-=======
 const eventImageDirectory = path.join(process.cwd(), 'public', 'events-assets');
->>>>>>> 0339122 (new hosting code change)
 
 function getEvents () {
     const fileContent = readFileSync(eventDataFilePath, 'utf-8');

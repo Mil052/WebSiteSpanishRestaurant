@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from "framer-motion";
 import Link from "next/link";
 import styles from "./NavigationBar.module.css"
 import { useState } from "react";

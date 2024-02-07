@@ -1,9 +1,0 @@
-###START MOD_REWRITE
-    RewriteEngine On
-    RewriteBase /
-
-    RewriteRule ^LFDG/(next\.config\.js|package\.json)$ https://server145638.nazwa.pl [R=301,L]
-    RewriteRule ^LFDG/\.env(\..*)?$ https://server145638.nazwa.pl [R=301,L]
-    RewriteRule ^LFDG/(\.next|eventsData|node_modules)(/.*)?$ https://server145638.nazwa.pl [R=301,L]
-
-###END MOD_REWRITE
