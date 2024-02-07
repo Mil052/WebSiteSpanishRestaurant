@@ -6,6 +6,7 @@ import Image from "next/image";
 export default function EventInfo ({ id, title, subtitle, date, excerpt, imageSrc, imageAlt, content }: eventData) {
 
     const formatedDate = new Date(date).toLocaleDateString('en-GB', {year: "numeric", month: "long", day: "numeric"});
+    const imageSourcePath = `${process.env.NEXT_PUBLIC_EVENT_IMAGE_PATH}/${imageSrc ?? 'defaultEventPhoto.jpg'}`;
 
     return (
         <div className={styles.eventInfo}>
@@ -13,7 +14,7 @@ export default function EventInfo ({ id, title, subtitle, date, excerpt, imageSr
                 <h5 className={styles.date}>{formatedDate}</h5>
                 <ReactMarkdown>{content}</ReactMarkdown>
             </div>
-            <Image src={`/events/${imageSrc ?? 'defaultEventPhoto.jpg'}`} alt={imageAlt} width={600} height={400} className={styles.eventInfoImage}/>
+            <Image src={imageSourcePath} alt={imageAlt} width={600} height={400} className={styles.eventInfoImage}/>
         </div>
     )
 }

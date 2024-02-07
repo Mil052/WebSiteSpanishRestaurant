@@ -106,6 +106,7 @@
 }
 
 .buttonPrimary, .buttonSecondary {
+  margin: 12px 0;
   height: 40px;
   font-family: var(--font-button);
   font-size: 18px;
@@ -132,14 +133,6 @@
   background-color: var(--button-color-primary);
 }
 
-.buttonsRow {
-  margin: 12px 0;
-}
-
-.buttonsRow a:first-child {
-  margin-right: 1rem;
-}
-
 /* Media Queries */
 
 @media (min-width: 576px) {
@@ -163,10 +156,6 @@
   .infoBlock p {
     font-size: 18px;
     line-height: 25px;
-  }
-
-  .buttonsRow a:first-child {
-    margin-right: 2rem;
   }
 }
 

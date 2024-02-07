@@ -37,7 +37,7 @@ export default function Footer () {
             </div>
             <div className={styles.createdBy}>
                 <p>Made by Miłosz Gajda</p>
-                <Link href="/admin">admin panel</Link>
+                <Link href="/admin" prefetch={false}>admin panel</Link>
             </div>
         </footer>
     )

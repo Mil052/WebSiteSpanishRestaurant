@@ -5,6 +5,7 @@ import Image from "next/image";
 export default function EventShortcut ({id, title, subtitle, date, excerpt, imageSrc, imageAlt, content }: eventData) {
 
     const formatedDate = new Date(date).toLocaleDateString('en-GB', {year: "numeric", month: "long", day: "numeric"});
+    const imageSourcePath = `${process.env.NEXT_PUBLIC_EVENT_IMAGE_PATH}/${imageSrc ?? 'defaultEventPhoto.jpg'}`;
     
     return (
         <>
@@ -14,7 +15,7 @@ export default function EventShortcut ({id, title, subtitle, date, excerpt, imag
                 <p className={styles.subtitle}>{`(${subtitle})`}</p>
                 <p className={styles.excerpt}>{excerpt}</p>
             </div>
-            <Image src={`/events/${imageSrc ?? 'defaultEventPhoto.jpg'}`} alt={imageAlt} width={600} height={400} className={styles.eventImage}/>
+            <Image src={imageSourcePath} alt={imageAlt} width={600} height={400} className={styles.eventImage}/>
         </>
     )
 }

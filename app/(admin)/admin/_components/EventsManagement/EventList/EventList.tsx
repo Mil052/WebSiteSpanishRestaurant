@@ -3,7 +3,13 @@ import { eventData } from '@/app/api/events/_utilities/eventsOperations';
 import styles from './EventList.module.css';
 
 export default function EventList ({ events, handleDeleteEvent , editEvent }: {events: eventData[], handleDeleteEvent: (eventIdentifier: {eventId: number, imageFileName: string|null}) => void, editEvent: (event: eventData) => void}) {
-    console.log(events);
+    
+    const onDeleteHandler = (id: number, imageFileName: string|null ) => {
+        if (confirm("Do you really want to delete event ?")) {
+            handleDeleteEvent({eventId: id, imageFileName: imageFileName});
+        }
+    }
+
     return (
         <div className={styles.listContainer}>
             <h3 className={styles.listTitle}>Events List</h3>
@@ -15,7 +21,7 @@ export default function EventList ({ events, handleDeleteEvent , editEvent }: {e
                             <h3 className={styles.itemTitle}>{event.title}</h3>
                             <p className={styles.itemExcerpt}>{event.excerpt}</p>
                             <div className={styles.buttons} >
-                                <button type="button" onClick={() => handleDeleteEvent({eventId: event.id!, imageFileName: event.imageSrc})}className={styles.buttonPrimary}>Delete</button>
+                                <button type="button" onClick={() => onDeleteHandler(event.id!, event.imageSrc)} className={styles.buttonPrimary}>Delete</button>
                                 <button type="button" onClick={() => editEvent(event)} className={styles.buttonSecondary}>Edit</button>
                             </div>
                         </li>

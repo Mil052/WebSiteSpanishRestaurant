@@ -1,0 +1,67 @@
+1. NextJs during build proces set slashes in paths according to runtime environment(windows/linuks). Because my hosting is on linuks system I have to run build proces on docker container (emulate linuks environment):
+
+https://docs.docker.com/engine/reference/commandline/container_run/
+https://medium.com/@2018.itsuki/dockerize-a-next-js-app-4b03021e084d
+
+docker run -v C:\myCode\la-fabrica-del-gusto:/box -it -p 8000:3000 node:20-alpine /bin/sh
+
+2. In next.config.js I set:
+	const nextConfig = {
+    		output: 'standalone',
+    		images: {
+        	unoptimized: true,
+    		},
+	}
+Then run build command from box folder ('cd box' then 'npm run build')
+
+3. To prepare a complete folder for deployment some files sholud be copied. I create a new folder 'build' and copy necessary files into it:
+( https://nextjs.org/docs/pages/api-reference/next-config-js/output#automatically-copying-traced-files )
+create sript file: build.sh
+------------------------------------------
+#!/bin/sh
+rm -R -f build
+mkdir build
+cd .next/standalone
+pwd
+cp -R . ../../build
+cd ../../
+pwd
+cp -R ./public ./build
+cp -R ./.next/static ./build/.next/static
+cp -R ../usr/local/lib/node_modules/sharp ./build/node_modules/sharp
+cp ./.env.local ./build
+cp ./next.config.js ./build
+-------------------------------------------
+chmod +x build.sh
+/box # ./build.sh
+
+4. W projekcie zrezygnowałem z optymalizacji obrazów, ale kilka ważnych informacji na ten temat:
+Jeżeli korzystamy z optymalizacji obrazów to w wersji produkcyjnej musimy zainstalować globalnie moduł sharp w dockerze lub na hostingu gdzie aplikacja będzie uruchamiana:
+	/box # npm install -g sharp
+	dodanie zmiennej systemowej w dockerze:
+	/box # export NEXT_SHARP_PATH=/usr/local/lib/node_modules/sharp
+
+usunięcie zmiennej systemowej w dockerze:
+/box/build # unset NEXT_SHARP_PATH
+/box/build # echo $NEXT_SHARP_PATH
+
+
+-e env=LOCAL  (dodawanie zmiennej systemowej) ???
+
+export env+value
+env=value node app.js
+echo $env
+
+/box # ./build.sh
+https://flinect.com/blog/nextjs-standalone-docker-sharp-installation
+
+5. Next public folder info:
+!!!!!!!
+Only assets that are in the public directory at build time will be served by Next.js. Files added at request time won't be available. We recommend using a third-party service like AWS S3 for persistent file storage.
+https://nextjs.org/docs/app/building-your-application/optimizing/static-assets
+!!!!!!
+Answer from a forum:
+The problem is really simple. Nextjs does not want you to change or add files to your public folder after deploy. Its also no vercel issue. You can try it local if you make an build and use next start. It will also not work. Its an security thing that next only allowes to access files in public that are existing on build time. Nextjs wants you to use cdn's for dynamic files instead. What we do is using an other folder called files/assets or uploads. And change our nginx or apache proxy config so nginx or apache delivers the files in that folder. If we dont have the possibility we create an asset api endpoint which delivers files from said folder.
+
+Examples of api endpoints that returns images from serwer:
+https://copyprogramming.com/howto/next-js-serving-static-files-that-are-not-included-in-the-build-or-source-code

@@ -14,7 +14,7 @@ export type eventData = {
 }
 
 const eventDataFilePath = path.join(process.cwd(), 'eventsData', 'eventsData.json');
-const eventImageDirectory = path.join(process.cwd(), 'public', 'events');
+const eventImageDirectory = path.join(process.cwd(), 'public', 'event-image');
 
 function getEvents () {
     const fileContent = readFileSync(eventDataFilePath, 'utf-8');

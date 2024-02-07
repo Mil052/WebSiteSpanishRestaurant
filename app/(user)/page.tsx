@@ -17,9 +17,7 @@ export default function Home() {
             <p>Traditional Spanish dishes. Paella, gazpacho (cold vegetable soup), potato tortilla, cocido madrileño (chickpeas stewed with meat), Iberian ham, churros and tapas.</p>
             <p>Excellent Spanish-style cuisine!</p>
             <p>Wide selection of wines.</p>
-            <div className={styles.buttonsRow}>
-              <Link href="/menu"><button className={styles.buttonPrimary}>Menu</button></Link>
-            </div>
+            <Link href="/menu"><button className={styles.buttonPrimary}>Menu</button></Link>
             <h4>Welcome!</h4>
           </div>
           <div className={styles.imageContainer}>
@@ -36,10 +34,7 @@ export default function Home() {
             <p>Are you looking for a friendly and elegant place for business meetings, special occasions, birthdays or name days?</p>
             <p>Welcome to our restaurant!</p>
             <p><b>Organization of cultural evenings.<br/>Small, private stage with live music.</b></p>
-            <div className={styles.buttonsRow}>
-              <Link href="/events"><button className={styles.buttonPrimary}>Events</button></Link>
-              <Link href="/news"><button className={styles.buttonSecondary}>News</button></Link>
-            </div>
+            <Link href="/events"><button className={styles.buttonSecondary}>Events</button></Link>
           </div>
         </div>
       </section>
