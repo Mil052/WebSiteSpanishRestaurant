@@ -5,11 +5,7 @@ import Image from "next/image";
 export default function EventShortcut ({id, title, subtitle, date, excerpt, imageSrc, imageAlt, content }: eventData) {
 
     const formatedDate = new Date(date).toLocaleDateString('en-GB', {year: "numeric", month: "long", day: "numeric"});
-<<<<<<< HEAD
-    const imageSourcePath = `${process.env.NEXT_PUBLIC_EVENT_IMAGE_PATH}/${imageSrc ?? 'defaultEventPhoto.jpg'}`;
-=======
     const imageSourcePath = `/events-assets/${imageSrc ?? 'defaultEventPhoto.jpg'}`;
->>>>>>> 0339122 (new hosting code change)
     
     return (
         <>
